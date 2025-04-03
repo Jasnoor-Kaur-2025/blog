@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin My Blogs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #0a0a0a;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+
+        a, button {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 10px;
+            color: #0a0a0a;
+            background: #00ffcc;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        a:hover, button:hover {
+            background: #ff00ff;
+            box-shadow: 0 0 10px #ff00ff;
+            color: #fff;
+        }
+
+        form {
+            display: inline-block;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: #1a1a1a;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        th {
+            background: #00ffcc;
+            color: #0a0a0a;
+        }
+
+        td {
+            color: #ccc;
+        }
+
+        tr:hover {
+            background: #222;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="{% url 'addBlog' %}">Add New Blog</a>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+        {% for blog in blogs %}
+        <tr>
+            <td>{{ blog.title }}</td>
+            <td>
+                <a href="{% url 'editBlog' blog.id %}">Edit</a> 
+                <a href="{% url 'deleteBlog' blog.id %}" onclick="return confirm('Are you sure?');">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>

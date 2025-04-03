@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blogs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #0a0a0a;
+            color: #fff;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+
+        .posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .post {
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+            transition: transform 0.3s ease-in-out;
+        }
+        .post:hover {
+            transform: scale(1.05);
+        }
+
+        .left {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .right {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .right h1 {
+            margin: 0;
+            font-size: 22px;
+            color: #00ffcc;
+        }
+
+        .right p {
+            margin-top: 10px;
+            color: #ccc;
+            font-size: 16px;
+        }
+
+        .right a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            color: #0a0a0a;
+            background: #00ffcc;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .right a:hover {
+            background: #ff00ff;
+            box-shadow: 0 0 10px #ff00ff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Blogs</h1>
+    <div class="posts">
+        {% for x in blogs %}
+        <div class="post">
+            <div class="left">
+                {% if x.image %}
+                <img src="{{ x.image.url }}" alt="{{ x.title }}">
+                {% else %}
+                <p>No Image</p>
+                {% endif %}
+            </div>
+            <div class="right">
+                <h1>{{ x.title }}</h1>
+                <p>{{ x.tagline }}</p>
+                <a href="{% url 'blog' x.id %}">Read Now</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

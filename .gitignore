@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.egg-info/
+
+# Django secret settings
+*.sqlite3
+db.sqlite3
+.env
+
+# Logs & cache
+*.log
+*.pot
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.DS_Store
+
+# Static and media files (optional)
+staticfiles/
+media/
+
+# Migrations (optional, but recommended to keep)
+# Uncomment the next line if you want to ignore migrations
+# **/migrations/*.pyc
